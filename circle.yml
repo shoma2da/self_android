@@ -4,4 +4,4 @@ dependencies:
 
 test:
   pre:
-    - ./gradlew lint
+    - ./gradlew lint findbugs
