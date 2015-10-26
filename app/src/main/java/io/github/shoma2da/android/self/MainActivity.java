@@ -26,26 +26,23 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                // Handle navigation view item clicks here.
-                int id = item.getItemId();
+        navigationView.setNavigationItemSelectedListener(item -> {
+            // Handle navigation view item clicks here.
+            int id = item.getItemId();
 
-                if (id == R.id.nav_camara) {
-                    // Handle the camera action
-                } else if (id == R.id.nav_gallery) {
+            if (id == R.id.nav_camara) {
+                // Handle the camera action
+            } else if (id == R.id.nav_gallery) {
 
-                } else if (id == R.id.nav_share) {
+            } else if (id == R.id.nav_share) {
 
-                } else if (id == R.id.nav_send) {
+            } else if (id == R.id.nav_send) {
 
-                }
-
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                drawer.closeDrawer(GravityCompat.START);
-                return true;
             }
+
+            DrawerLayout drawer1 = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer1.closeDrawer(GravityCompat.START);
+            return true;
         });
     }
 
