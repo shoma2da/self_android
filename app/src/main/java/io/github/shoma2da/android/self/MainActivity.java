@@ -1,5 +1,7 @@
 package io.github.shoma2da.android.self;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import io.github.shoma2da.android.self.view.LicenseActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
             } else if (id == R.id.nav_send) {
 
+            } else if (id == R.id.nav_license) {
+                startActivity(new Intent(MainActivity.this, LicenseActivity.class));
             }
 
             DrawerLayout drawer1 = (DrawerLayout) findViewById(R.id.drawer_layout);
