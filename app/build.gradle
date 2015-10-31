@@ -1,10 +1,12 @@
 buildscript {
     repositories {
         mavenCentral()
+        jcenter()
     }
 
     dependencies {
         classpath 'me.tatarka:gradle-retrolambda:3.2.3'
+        classpath 'com.bluepapa32:gradle-watch-plugin:0.1.5'
     }
 }
 
@@ -14,6 +16,7 @@ repositories {
 
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.bluepapa32.watch'
 
 android {
     compileSdkVersion 23
@@ -51,4 +54,11 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.0.1'
     compile 'io.reactivex:rxjava:1.0.14'
     compile 'com.jakewharton.timber:timber:4.1.0'
+}
+
+watch {
+    java {
+        files files('src/main/java')
+        tasks 'lint'
+    }
 }
