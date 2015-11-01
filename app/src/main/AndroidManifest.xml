@@ -22,8 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.LicenseActivity" >
-        </activity>
+        <activity android:name=".view.LicenseActivity" />
+        <activity android:name=".view.LoginActivity" />
     </application>
 
 </manifest>

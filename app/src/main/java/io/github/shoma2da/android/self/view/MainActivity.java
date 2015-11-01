@@ -10,10 +10,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import io.github.shoma2da.android.self.R;
+import io.github.shoma2da.android.self.viewmodel.MainActivityViewModel;
 import io.github.shoma2da.android.self.viewmodel.NavigationViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
+    private MainActivityViewModel mMainActivityViewModel;
     private NavigationViewModel mNavigationViewModel;
 
     @Override
@@ -31,6 +33,14 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
         mNavigationViewModel = new NavigationViewModel(this, drawer, navigationView);
+
+        mMainActivityViewModel = new MainActivityViewModel(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mMainActivityViewModel.confirmLogin();
     }
 
     @Override
