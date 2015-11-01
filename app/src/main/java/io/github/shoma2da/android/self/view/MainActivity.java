@@ -1,9 +1,7 @@
-package io.github.shoma2da.android.self;
+package io.github.shoma2da.android.self.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +9,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import io.github.shoma2da.android.self.view.LicenseActivity;
+import io.github.shoma2da.android.self.R;
+import io.github.shoma2da.android.self.viewmodel.NavigationViewModel;
 
 public class MainActivity extends AppCompatActivity {
+
+    private NavigationViewModel mNavigationViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,27 +29,8 @@ public class MainActivity extends AppCompatActivity {
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(item -> {
-            // Handle navigation view item clicks here.
-            int id = item.getItemId();
-
-            if (id == R.id.nav_camara) {
-                // Handle the camera action
-            } else if (id == R.id.nav_gallery) {
-
-            } else if (id == R.id.nav_share) {
-
-            } else if (id == R.id.nav_send) {
-
-            } else if (id == R.id.nav_license) {
-                startActivity(new Intent(MainActivity.this, LicenseActivity.class));
-            }
-
-            DrawerLayout drawer1 = (DrawerLayout) findViewById(R.id.drawer_layout);
-            drawer1.closeDrawer(GravityCompat.START);
-            return true;
-        });
+        NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
+        mNavigationViewModel = new NavigationViewModel(this, drawer, navigationView);
     }
 
     @Override
