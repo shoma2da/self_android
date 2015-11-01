@@ -45,4 +45,7 @@ public class NavigationViewModel implements NavigationView.OnNavigationItemSelec
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void onPause() {
+    }
 }
