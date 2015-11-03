@@ -20,6 +20,10 @@ public class User {
         return Observable.empty();
     }
 
+    public static User getForce() {
+        return get().toBlocking().first();
+    }
+
     public static Observable<User> signup(String name, String email, String password) {
         return Observable.create(observer -> {
             ParseUser parseUser = new ParseUser();
@@ -68,6 +72,10 @@ public class User {
 
     User(ParseUser parseUser) {
         mParseUser = parseUser;
+    }
+
+    public ParseUser toParseUser() {
+        return mParseUser;
     }
 
 }

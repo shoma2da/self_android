@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         mNavigationViewModel = new NavigationViewModel(this, drawer, navigationView);
 
         mMainActivityViewModel = new MainActivityViewModel(this);
+        mMainActivityViewModel.setup();
     }
 
     @Override
