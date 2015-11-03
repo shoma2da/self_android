@@ -17,13 +17,10 @@ import rx.schedulers.Schedulers;
  */
 public class SelectLoginFragmentViewModel {
 
-    private Activity mActivity;
     private SelectLoginFragment mFragment;
-
     private ProgressDialog mDialog;
 
-    public SelectLoginFragmentViewModel(Activity activity, SelectLoginFragment fragment) {
-        mActivity = activity;
+    public SelectLoginFragmentViewModel(SelectLoginFragment fragment) {
         mFragment = fragment;
     }
 
@@ -39,12 +36,19 @@ public class SelectLoginFragmentViewModel {
                                 if (isEmpty) {
                                     onNotPrepareUser();
                                 } else {
-                                    mActivity.finish();
+                                    mFragment.getActivity().finish();
                                 }
                             },
                             e -> onNotPrepareUser(e),
                             () -> dissmissProgressDialog()
                     );
+        });
+
+        view.findViewById(R.id.button_login).setOnClickListener(button -> {
+            Activity activity = mFragment.getActivity();
+            if (activity != null || activity instanceof OnSelectSignupListener) {
+                ((OnSelectSignupListener)activity).onSelectSignup();
+            }
         });
     }
 
@@ -56,11 +60,11 @@ public class SelectLoginFragmentViewModel {
         if (throwable != null) {
             throwable.printStackTrace();
         }
-        Toast.makeText(mActivity, "失敗しました", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mFragment.getActivity(), "失敗しました", Toast.LENGTH_SHORT).show();
     }
 
     void showProgressDialog() {
-        mDialog = new ProgressDialog(mActivity);
+        mDialog = new ProgressDialog(mFragment.getActivity());
         mDialog.setMessage("ログインしています");
         mDialog.show();
     }
@@ -70,4 +74,9 @@ public class SelectLoginFragmentViewModel {
             mDialog.dismiss();
         }
     }
+
+    public interface OnSelectSignupListener {
+        void onSelectSignup();
+    }
+
 }

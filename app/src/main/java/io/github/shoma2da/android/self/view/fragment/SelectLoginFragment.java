@@ -20,7 +20,7 @@ public class SelectLoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = new SelectLoginFragmentViewModel(getActivity(), this);
+        mViewModel = new SelectLoginFragmentViewModel(this);
     }
 
     @Nullable

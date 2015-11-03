@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"/>
 
     <Button
+        android:id="@+id/button_login"
         android:text="ログイン"
         android:layout_margin="@dimen/login_form_input_elems_margin"
         android:layout_width="match_parent"

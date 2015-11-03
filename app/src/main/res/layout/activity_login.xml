@@ -10,12 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="150dip"/>
 
-    <fragment
+    <FrameLayout
+        android:id="@+id/frame_fragment"
         android:layout_below="@id/image_logo"
-        android:id="@+id/fragment_input_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="io.github.shoma2da.android.self.view.fragment.SelectLoginFragment"
-        />
+        android:layout_height="match_parent" />
 
 </RelativeLayout>
