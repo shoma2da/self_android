@@ -1,4 +1,4 @@
-package io.github.shoma2da.android.self.viewmodel;
+package io.github.shoma2da.android.self.viewmodel.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,7 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 
 import io.github.shoma2da.android.self.R;
-import io.github.shoma2da.android.self.view.LicenseActivity;
+import io.github.shoma2da.android.self.view.activity.LicenseActivity;
 
 /**
  * Created by shoma2da on 2015/11/01.

@@ -1,4 +1,4 @@
-package io.github.shoma2da.android.self.view;
+package io.github.shoma2da.android.self.view.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,8 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import io.github.shoma2da.android.self.R;
-import io.github.shoma2da.android.self.viewmodel.MainActivityViewModel;
-import io.github.shoma2da.android.self.viewmodel.NavigationViewModel;
+import io.github.shoma2da.android.self.viewmodel.activity.MainActivityViewModel;
+import io.github.shoma2da.android.self.viewmodel.activity.NavigationViewModel;
 
 public class MainActivity extends AppCompatActivity {
 

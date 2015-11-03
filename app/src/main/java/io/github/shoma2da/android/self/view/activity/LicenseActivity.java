@@ -1,4 +1,4 @@
-package io.github.shoma2da.android.self.view;
+package io.github.shoma2da.android.self.view.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

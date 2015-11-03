@@ -18,7 +18,7 @@
         android:theme="@style/AppTheme"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="io.github.shoma2da.android.self.view.LicenseActivity">
+        tools:context="io.github.shoma2da.android.self.view.activity.LicenseActivity">
 
         <TextView
             android:layout_width="match_parent"

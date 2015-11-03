@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/image_logo"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="center"
+        android:layout_width="match_parent"
+        android:layout_height="150dip"/>
+
+    <fragment
+        android:layout_below="@id/image_logo"
+        android:id="@+id/fragment_input_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="io.github.shoma2da.android.self.view.fragment.SelectLoginFragment"
+        />
+
+</RelativeLayout>
