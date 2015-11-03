@@ -78,4 +78,8 @@ public class User {
         return mParseUser;
     }
 
+    public String getId() {
+        return mParseUser.getObjectId();
+    }
+
 }

@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.parse.ParseUser;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import io.github.shoma2da.android.self.R;
@@ -70,29 +72,46 @@ public class MainActivityViewModel {
                     );
         });
 
-        //Sample Data and an Adapter
-        List<String> strings = Observable.range(0, 100)
-                .map(integer -> "" + integer)
-                .toList().toBlocking().first();
-        RecyclerView recyclerView = (RecyclerView) mMainActivity.findViewById(R.id.list_content);
-        recyclerView.setLayoutManager(new LinearLayoutManager(mMainActivity));
-        recyclerView.setAdapter(new RecyclerView.Adapter() {
-            @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
-                return new RecyclerView.ViewHolder(view) { };
-            }
+    }
 
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-                ((TextView)holder.itemView).setText(strings.get(position));
-            }
+    public void showContents() {
+        User.get().subscribe(user -> {
+            TextContent.find(user, 100).toList().subscribe(textContents -> {
 
-            @Override
-            public int getItemCount() {
-                return strings.size();
-            }
+                //setup RecyclerView
+                RecyclerView recyclerView = (RecyclerView) mMainActivity.findViewById(R.id.list_content);
+                recyclerView.setLayoutManager(new LinearLayoutManager(mMainActivity));
+                recyclerView.setAdapter(new RecyclerView.Adapter() {
+                    @Override
+                    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                        View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+                        return new RecyclerView.ViewHolder(view) {
+                        };
+                    }
+
+                    @Override
+                    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+                        ((TextView) holder.itemView).setText(textContents.get(position).get());
+                    }
+
+                    @Override
+                    public int getItemCount() {
+                        return textContents.size();
+                    }
+                });
+                recyclerView.scrollToPosition(textContents.size() - 1);
+            });
+//                    .subscribe(
+//                            next -> Timber.d("next is " + next.get()),
+//                            error -> {
+//                                Timber.d("error!!");
+//                                error.printStackTrace();
+//                            },
+//                            () -> Timber.d("onComplete!")
+//                    );
         });
-        recyclerView.scrollToPosition(strings.size() - 1);
+//        //FIXME 同期的にテキスト一覧を読み込んでる
+//        List<TextContent> textContents = TextContent.find(User.getForce(), 100).toList().toBlocking().first();
+//
     }
 }
