@@ -1,6 +1,7 @@
 package io.github.shoma2da.android.self.viewmodel.fragment;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Toast;
@@ -19,6 +20,8 @@ public class SelectLoginFragmentViewModel {
     private Activity mActivity;
     private SelectLoginFragment mFragment;
 
+    private ProgressDialog mDialog;
+
     public SelectLoginFragmentViewModel(Activity activity, SelectLoginFragment fragment) {
         mActivity = activity;
         mFragment = fragment;
@@ -30,6 +33,7 @@ public class SelectLoginFragmentViewModel {
                     .subscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
                     .isEmpty()
+                    .doOnSubscribe(() -> showProgressDialog())
                     .subscribe(
                             isEmpty -> {
                                 if (isEmpty) {
@@ -39,7 +43,7 @@ public class SelectLoginFragmentViewModel {
                                 }
                             },
                             e -> onNotPrepareUser(e),
-                            () -> {}
+                            () -> dissmissProgressDialog()
                     );
         });
     }
@@ -53,5 +57,17 @@ public class SelectLoginFragmentViewModel {
             throwable.printStackTrace();
         }
         Toast.makeText(mActivity, "失敗しました", Toast.LENGTH_SHORT).show();
+    }
+
+    void showProgressDialog() {
+        mDialog = new ProgressDialog(mActivity);
+        mDialog.setMessage("ログインしています");
+        mDialog.show();
+    }
+
+    void dissmissProgressDialog() {
+        if (mDialog != null) {
+            mDialog.dismiss();
+        }
     }
 }
