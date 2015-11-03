@@ -93,5 +93,6 @@ public class MainActivityViewModel {
                 return strings.size();
             }
         });
+        recyclerView.scrollToPosition(strings.size() - 1);
     }
 }
