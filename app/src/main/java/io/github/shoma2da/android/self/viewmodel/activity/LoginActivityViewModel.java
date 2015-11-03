@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 
 import io.github.shoma2da.android.self.R;
 import io.github.shoma2da.android.self.view.activity.LoginActivity;
+import io.github.shoma2da.android.self.view.fragment.LoginFragment;
 import io.github.shoma2da.android.self.view.fragment.SelectLoginFragment;
 import io.github.shoma2da.android.self.view.fragment.SignupFragment;
 import io.github.shoma2da.android.self.viewmodel.fragment.SelectLoginFragmentViewModel;
@@ -12,7 +13,7 @@ import io.github.shoma2da.android.self.viewmodel.fragment.SelectLoginFragmentVie
 /**
  * Created by shoma2da on 2015/11/01.
  */
-public class LoginActivityViewModel implements SelectLoginFragmentViewModel.OnSelectSignupListener {
+public class LoginActivityViewModel implements SelectLoginFragmentViewModel.OnSelectLoginTypeListener {
 
     private LoginActivity mActivity;
 
@@ -33,6 +34,15 @@ public class LoginActivityViewModel implements SelectLoginFragmentViewModel.OnSe
         FragmentManager fragmentManager = mActivity.getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frame_fragment, new SignupFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    @Override
+    public void onSelectLogin() {
+        FragmentManager fragmentManager = mActivity.getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.frame_fragment, new LoginFragment());
         transaction.addToBackStack(null);
         transaction.commit();
     }

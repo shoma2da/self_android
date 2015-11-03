@@ -25,6 +25,20 @@ public class SelectLoginFragmentViewModel {
     }
 
     public void onCreateView(View view) {
+        view.findViewById(R.id.button_signup).setOnClickListener(button -> {
+            Activity activity = mFragment.getActivity();
+            if (activity != null || activity instanceof OnSelectLoginTypeListener) {
+                ((OnSelectLoginTypeListener)activity).onSelectSignup();
+            }
+        });
+
+        view.findViewById(R.id.button_login).setOnClickListener(button -> {
+            Activity activity = mFragment.getActivity();
+            if (activity != null || activity instanceof OnSelectLoginTypeListener) {
+                ((OnSelectLoginTypeListener)activity).onSelectLogin();
+            }
+        });
+
         view.findViewById(R.id.button_login_as_guest).setOnClickListener(v -> {
             User.loginAsAnonymous()
                     .subscribeOn(Schedulers.computation())
@@ -42,13 +56,6 @@ public class SelectLoginFragmentViewModel {
                             e -> onNotPrepareUser(e),
                             () -> dissmissProgressDialog()
                     );
-        });
-
-        view.findViewById(R.id.button_login).setOnClickListener(button -> {
-            Activity activity = mFragment.getActivity();
-            if (activity != null || activity instanceof OnSelectSignupListener) {
-                ((OnSelectSignupListener)activity).onSelectSignup();
-            }
         });
     }
 
@@ -75,8 +82,9 @@ public class SelectLoginFragmentViewModel {
         }
     }
 
-    public interface OnSelectSignupListener {
+    public interface OnSelectLoginTypeListener {
         void onSelectSignup();
+        void onSelectLogin();
     }
 
 }

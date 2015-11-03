@@ -11,7 +11,7 @@ import io.github.shoma2da.android.self.viewmodel.fragment.SelectLoginFragmentVie
 /**
  * Created by shoma2da on 2015/11/01.
  */
-public class LoginActivity extends Activity implements SelectLoginFragmentViewModel.OnSelectSignupListener {
+public class LoginActivity extends Activity implements SelectLoginFragmentViewModel.OnSelectLoginTypeListener {
 
     private LoginActivityViewModel mViewModel;
 
@@ -26,6 +26,11 @@ public class LoginActivity extends Activity implements SelectLoginFragmentViewMo
     @Override
     public void onSelectSignup() {
         mViewModel.onSelectSignup();
+    }
+
+    @Override
+    public void onSelectLogin() {
+        mViewModel.onSelectLogin();
     }
 
     @Override
