@@ -13,6 +13,7 @@ import com.parse.ParseUser;
 import io.github.shoma2da.android.self.R;
 import io.github.shoma2da.android.self.model.TextContent;
 import io.github.shoma2da.android.self.model.User;
+import io.github.shoma2da.android.self.util.Keyboard;
 import io.github.shoma2da.android.self.view.activity.LoginActivity;
 import io.github.shoma2da.android.self.view.activity.MainActivity;
 import timber.log.Timber;
@@ -59,12 +60,7 @@ public class MainActivityViewModel {
                                 button.setEnabled(true);
                                 contentTextView.setText("");
 
-                                // Check if no view has focus:
-                                View view = mMainActivity.getCurrentFocus();
-                                if (view != null) {
-                                    InputMethodManager imm = (InputMethodManager)mMainActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
-                                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                                }
+                                Keyboard.hidden(mMainActivity);
                             }
                     );
         });
