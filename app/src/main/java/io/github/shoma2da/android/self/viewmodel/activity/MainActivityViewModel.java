@@ -1,14 +1,18 @@
 package io.github.shoma2da.android.self.viewmodel.activity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseUser;
+
+import java.util.List;
 
 import io.github.shoma2da.android.self.R;
 import io.github.shoma2da.android.self.model.TextContent;
@@ -16,6 +20,7 @@ import io.github.shoma2da.android.self.model.User;
 import io.github.shoma2da.android.self.util.Keyboard;
 import io.github.shoma2da.android.self.view.activity.LoginActivity;
 import io.github.shoma2da.android.self.view.activity.MainActivity;
+import rx.Observable;
 import timber.log.Timber;
 
 /**
@@ -63,6 +68,30 @@ public class MainActivityViewModel {
                                 Keyboard.hidden(mMainActivity);
                             }
                     );
+        });
+
+        //Sample Data and an Adapter
+        List<String> strings = Observable.range(0, 100)
+                .map(integer -> "" + integer)
+                .toList().toBlocking().first();
+        RecyclerView recyclerView = (RecyclerView) mMainActivity.findViewById(R.id.list_content);
+        recyclerView.setLayoutManager(new LinearLayoutManager(mMainActivity));
+        recyclerView.setAdapter(new RecyclerView.Adapter() {
+            @Override
+            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+                return new RecyclerView.ViewHolder(view) { };
+            }
+
+            @Override
+            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+                ((TextView)holder.itemView).setText(strings.get(position));
+            }
+
+            @Override
+            public int getItemCount() {
+                return strings.size();
+            }
         });
     }
 }
