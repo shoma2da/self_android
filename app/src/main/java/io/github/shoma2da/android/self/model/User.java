@@ -20,6 +20,37 @@ public class User {
         return Observable.empty();
     }
 
+    public static Observable<User> signup(String name, String email, String password) {
+        return Observable.create(observer -> {
+            ParseUser parseUser = new ParseUser();
+            parseUser.setUsername(name);
+            parseUser.setEmail(email);
+            parseUser.setPassword(password);
+
+            parseUser.signUpInBackground(e -> {
+                if (e != null) {
+                    observer.onError(e);
+                    return;
+                }
+                observer.onNext(new User(parseUser));
+                observer.onCompleted();
+            });
+        });
+    }
+
+    public static Observable<User> login(String name, String password) {
+        return Observable.create(observer -> {
+            ParseUser.logInInBackground(name, password, (parseUser, e) -> {
+                if (e != null) {
+                    observer.onError(e);
+                    return;
+                }
+                observer.onNext(new User(parseUser));
+                observer.onCompleted();
+            });
+        });
+    }
+
     public static Observable<User> loginAsAnonymous() {
         return Observable.create(observer -> {
             ParseAnonymousUtils.logIn((parseUser, e) -> {

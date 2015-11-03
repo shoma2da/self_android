@@ -5,8 +5,8 @@
               android:layout_height="wrap_content">
 
     <EditText
-        android:id="@+id/edittext_email"
-        android:hint="Email"
+        android:id="@+id/edittext_name"
+        android:hint="Name"
         android:gravity="center"
         android:layout_margin="@dimen/login_form_input_elems_margin"
         android:inputType="textEmailAddress"
@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"/>
 
     <Button
+        android:id="@+id/button_login"
         android:text="Login"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
