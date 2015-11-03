@@ -8,6 +8,7 @@ import com.parse.ParseUser;
 import io.github.shoma2da.android.self.model.User;
 import io.github.shoma2da.android.self.view.activity.LoginActivity;
 import io.github.shoma2da.android.self.view.activity.MainActivity;
+import timber.log.Timber;
 
 /**
  * Created by shoma2da on 2015/11/01.
@@ -30,7 +31,7 @@ public class MainActivityViewModel {
                 });
 
         //Debug
-        User.get().subscribe(user -> Log.d("self", "user is " + ParseUser.getCurrentUser()));
+        Timber.d("user is " + ParseUser.getCurrentUser());
     }
 
 }

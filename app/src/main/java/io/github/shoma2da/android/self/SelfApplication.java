@@ -5,6 +5,8 @@ import android.app.Application;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
+import timber.log.Timber;
+
 /**
  * Created by shoma2da on 2015/11/01.
  */
@@ -16,5 +18,7 @@ public class SelfApplication extends Application {
 
         Parse.enableLocalDatastore(this);
         Parse.initialize(this, "9G4O1T132F572roEvApvSv394oVoYklq8CDPXDlh", "f1JdakedjMytcEhkfHesuNg6s4DTWXAYpAMaS4Ae");
+
+        Timber.plant(new Timber.DebugTree());
     }
 }
