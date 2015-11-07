@@ -2,11 +2,13 @@ package io.github.shoma2da.android.self.viewmodel.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 
+import co.meyasuba.android.sdk.Meyasubaco;
 import io.github.shoma2da.android.self.R;
 import io.github.shoma2da.android.self.view.activity.LicenseActivity;
 
@@ -32,6 +34,22 @@ public class NavigationViewModel implements NavigationView.OnNavigationItemSelec
 
         if (id == R.id.nav_license) {
             mActivity.startActivity(new Intent(mActivity, LicenseActivity.class));
+        } else if (id == R.id.nav_comments) {
+            Meyasubaco.showCommentActivity(mActivity);
+        } else if (id == R.id.nav_helps) {
+            Meyasubaco.showHelpListActivity(mActivity);
+        } else if (id == R.id.nav_helps) {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            String urlString = "https://play.google.com/store/apps/details?id=" + mActivity.getPackageName();
+            intent.putExtra(Intent.EXTRA_TEXT, "便利に使える自分だけのチャットアプリ " + urlString);
+            intent.setType("text/plain");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mActivity.startActivity(intent);
+        } else if (id == R.id.nav_store) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + mActivity.getPackageName()));
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mActivity.startActivity(intent);
         }
 
         mDrawerLayout.closeDrawer(GravityCompat.START);

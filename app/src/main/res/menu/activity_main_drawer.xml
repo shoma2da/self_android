@@ -4,9 +4,11 @@
     <item android:title="サポート">
         <menu>
             <item
+                android:id="@+id/nav_helps"
                 android:icon="@android:drawable/ic_dialog_info"
                 android:title="よくある質問"/>
             <item
+                android:id="@+id/nav_comments"
                 android:icon="@android:drawable/ic_menu_send"
                 android:title="意見・要望・質問"/>
         </menu>
@@ -18,7 +20,7 @@
                 android:icon="@android:drawable/ic_menu_share"
                 android:title="友達に教える"/>
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_store"
                 android:icon="@android:drawable/ic_menu_send"
                 android:title="評価する"/>
             <item
