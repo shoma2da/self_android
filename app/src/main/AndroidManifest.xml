@@ -22,6 +22,7 @@
         </activity>
         <activity android:name=".view.activity.LicenseActivity" />
         <activity android:name=".view.activity.LoginActivity" />
+        <activity android:name=".view.activity.SettingActivity" />
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package io.github.shoma2da.android.self.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, SettingActivity.class));
             return true;
         }
 
