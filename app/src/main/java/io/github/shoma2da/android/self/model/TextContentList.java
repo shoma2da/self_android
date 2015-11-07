@@ -32,7 +32,7 @@ public class TextContentList implements Iterable<TextContent> {
 
                         TextContentList textContentList = new TextContentList();
                         for (ParseObject parseObject : objects) {
-                            textContentList.add(new TextContent(user, parseObject.getString(COLUMN_TEXT)));
+                            textContentList.add(new TextContent(parseObject.getString(COLUMN_TEXT)));
                         }
 
                         subscriber.onNext(textContentList);

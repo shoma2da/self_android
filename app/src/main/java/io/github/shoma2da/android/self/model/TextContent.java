@@ -17,22 +17,20 @@ import static io.github.shoma2da.android.self.model.TextContentList.*;
  */
 public class TextContent {
 
-    private User mUser;
     private String mContent;
 
     @VisibleForTesting
     TextContent() {}
 
-    public TextContent(User user, String content) {
-        mUser = user;
+    public TextContent(String content) {
         mContent = content;
     }
 
-    public Observable<Boolean> save() {
+    public Observable<Boolean> belongTo(User user) {
         return Observable.create(observer -> {
             ParseObject parseObject = new ParseObject(CLASS_NAME);
             parseObject.put(COLUMN_TEXT, mContent);
-            parseObject.put(COLUMN_USER, mUser.toParseUser());
+            parseObject.put(COLUMN_USER, user.toParseUser());
             parseObject.saveInBackground(e -> {
                 if (e != null) {
                     observer.onError(e);

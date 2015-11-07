@@ -1,7 +1,6 @@
 package io.github.shoma2da.android.self.viewmodel.activity;
 
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +11,6 @@ import android.widget.Toast;
 
 import com.parse.ParseUser;
 
-import org.w3c.dom.Text;
-
-import java.util.List;
-
 import io.github.shoma2da.android.self.R;
 import io.github.shoma2da.android.self.model.TextContent;
 import io.github.shoma2da.android.self.model.TextContentList;
@@ -24,7 +19,6 @@ import io.github.shoma2da.android.self.util.Keyboard;
 import io.github.shoma2da.android.self.view.activity.LoginActivity;
 import io.github.shoma2da.android.self.view.activity.MainActivity;
 import io.github.shoma2da.android.self.view.view.MainContentsRecyclerView;
-import rx.Observable;
 import timber.log.Timber;
 
 /**
@@ -55,8 +49,8 @@ public class MainActivityViewModel {
         EditText contentTextView = (EditText)mMainActivity.findViewById(R.id.edittext_content);
         mMainActivity.findViewById(R.id.button_send).setOnClickListener(button -> {
             String content = contentTextView.getText().toString();
-            TextContent textContent = new TextContent(User.getForce(), content);
-            textContent.save()
+            TextContent textContent = new TextContent(content);
+            textContent.belongTo(User.getForce())
                     .doOnSubscribe(() -> {
                         contentTextView.setEnabled(false);
                         button.setEnabled(false);
