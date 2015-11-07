@@ -18,6 +18,7 @@ import java.util.List;
 
 import io.github.shoma2da.android.self.R;
 import io.github.shoma2da.android.self.model.TextContent;
+import io.github.shoma2da.android.self.model.TextContentList;
 import io.github.shoma2da.android.self.model.User;
 import io.github.shoma2da.android.self.util.Keyboard;
 import io.github.shoma2da.android.self.view.activity.LoginActivity;
@@ -83,12 +84,13 @@ public class MainActivityViewModel {
 
         MainContentsRecyclerView view = (MainContentsRecyclerView)mMainActivity.findViewById(R.id.list_content);
         RecyclerView recyclerView = view.toRecyclerView();
-        TextContent.find(user, 100).toList().subscribe(textContents -> {
+        TextContentList.get(user, 100).subscribe(textContents -> {
             recyclerView.setAdapter(new RecyclerView.Adapter() {
                 @Override
                 public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                     View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
-                    return new RecyclerView.ViewHolder(view){};
+                    return new RecyclerView.ViewHolder(view) {
+                    };
                 }
 
                 @Override
