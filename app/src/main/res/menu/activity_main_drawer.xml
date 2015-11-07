@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camara"
-            android:icon="@android:drawable/ic_menu_camera"
-            android:title="@string/imports"/>
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@android:drawable/ic_menu_gallery"
-            android:title="@string/gallery"/>
-    </group>
-
-    <item android:title="@string/communicate">
+    <item android:title="サポート">
+        <menu>
+            <item
+                android:icon="@android:drawable/ic_dialog_info"
+                android:title="よくある質問"/>
+            <item
+                android:icon="@android:drawable/ic_menu_send"
+                android:title="意見・要望・質問"/>
+        </menu>
+    </item>
+    <item android:title="そのほか">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@android:drawable/ic_menu_share"
-                android:title="@string/share"/>
+                android:title="友達に教える"/>
             <item
                 android:id="@+id/nav_send"
                 android:icon="@android:drawable/ic_menu_send"
-                android:title="@string/send"/>
+                android:title="評価する"/>
             <item
                 android:id="@+id/nav_license"
                 android:icon="@android:drawable/ic_menu_info_details"

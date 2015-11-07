@@ -36,12 +36,6 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="0dip" />
-        <!--<android.support.v7.widget.RecyclerView-->
-            <!--android:id="@+id/list_content"-->
-            <!--android:text="@string/hello_world"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:layout_height="0dip"/>-->
 
         <!-- 入力ゾーン -->
         <LinearLayout
