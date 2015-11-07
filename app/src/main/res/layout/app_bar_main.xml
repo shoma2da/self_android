@@ -31,12 +31,17 @@
         tools:showIn="@layout/app_bar_main"
         tools:context=".MainActivity">
 
-        <android.support.v7.widget.RecyclerView
+        <io.github.shoma2da.android.self.view.view.MainContentsRecyclerView
             android:id="@+id/list_content"
-            android:text="@string/hello_world"
-            android:layout_width="match_parent"
             android:layout_weight="1"
-            android:layout_height="0dip"/>
+            android:layout_width="match_parent"
+            android:layout_height="0dip" />
+        <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/list_content"-->
+            <!--android:text="@string/hello_world"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_height="0dip"/>-->
 
         <!-- 入力ゾーン -->
         <LinearLayout

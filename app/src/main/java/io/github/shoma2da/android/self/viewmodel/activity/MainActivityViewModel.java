@@ -22,6 +22,7 @@ import io.github.shoma2da.android.self.model.User;
 import io.github.shoma2da.android.self.util.Keyboard;
 import io.github.shoma2da.android.self.view.activity.LoginActivity;
 import io.github.shoma2da.android.self.view.activity.MainActivity;
+import io.github.shoma2da.android.self.view.view.MainContentsRecyclerView;
 import rx.Observable;
 import timber.log.Timber;
 
@@ -79,8 +80,8 @@ public class MainActivityViewModel {
             TextContent.find(user, 100).toList().subscribe(textContents -> {
 
                 //setup RecyclerView
-                RecyclerView recyclerView = (RecyclerView) mMainActivity.findViewById(R.id.list_content);
-                recyclerView.setLayoutManager(new LinearLayoutManager(mMainActivity));
+                MainContentsRecyclerView view = (MainContentsRecyclerView) mMainActivity.findViewById(R.id.list_content);
+                RecyclerView recyclerView = view.toRecyclerView();
                 recyclerView.setAdapter(new RecyclerView.Adapter() {
                     @Override
                     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
