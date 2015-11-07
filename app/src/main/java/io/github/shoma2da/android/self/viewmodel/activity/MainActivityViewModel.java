@@ -67,7 +67,7 @@ public class MainActivityViewModel {
                                 contentTextView.setText("");
 
                                 Keyboard.hidden(mMainActivity);
-                                showContents();
+                                showContents(); //TODO ほんとはListに追加したのをobserveする方が良さそう
                             }
                     );
         });
