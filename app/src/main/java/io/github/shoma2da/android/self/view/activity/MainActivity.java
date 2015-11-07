@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         mNavigationViewModel = new NavigationViewModel(this, drawer, navigationView);
 
         mMainActivityViewModel = new MainActivityViewModel(this);
-        mMainActivityViewModel.setup();
+        mMainActivityViewModel.onCreate();
     }
 
     @Override
@@ -66,5 +66,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         mNavigationViewModel.onPause();
+        mMainActivityViewModel.onPause();
     }
 }

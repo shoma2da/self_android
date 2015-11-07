@@ -19,6 +19,8 @@ import io.github.shoma2da.android.self.util.Keyboard;
 import io.github.shoma2da.android.self.view.activity.LoginActivity;
 import io.github.shoma2da.android.self.view.activity.MainActivity;
 import io.github.shoma2da.android.self.view.view.MainContentsRecyclerView;
+import rx.Subscription;
+import rx.subscriptions.CompositeSubscription;
 import timber.log.Timber;
 
 /**
@@ -27,6 +29,7 @@ import timber.log.Timber;
 public class MainActivityViewModel {
 
     private MainActivity mMainActivity;
+    private CompositeSubscription mSubscriptions = new CompositeSubscription();
 
     public MainActivityViewModel(MainActivity activity) {
         mMainActivity = activity;
@@ -45,7 +48,7 @@ public class MainActivityViewModel {
         Timber.d("user is " + ParseUser.getCurrentUser());
     }
 
-    public void setup() {
+    public void onCreate() {
         EditText contentTextView = (EditText)mMainActivity.findViewById(R.id.edittext_content);
         mMainActivity.findViewById(R.id.button_send).setOnClickListener(button -> {
             String content = contentTextView.getText().toString();
@@ -64,6 +67,7 @@ public class MainActivityViewModel {
                                 contentTextView.setText("");
 
                                 Keyboard.hidden(mMainActivity);
+                                showContents();
                             }
                     );
         });
@@ -78,7 +82,7 @@ public class MainActivityViewModel {
 
         MainContentsRecyclerView view = (MainContentsRecyclerView)mMainActivity.findViewById(R.id.list_content);
         RecyclerView recyclerView = view.toRecyclerView();
-        TextContentList.get(user, 100).subscribe(textContents -> {
+        Subscription subscribe = TextContentList.get(user, 100).subscribe(textContents -> {
             recyclerView.setAdapter(new RecyclerView.Adapter() {
                 @Override
                 public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -99,5 +103,10 @@ public class MainActivityViewModel {
             });
             recyclerView.scrollToPosition(textContents.size() - 1);
         });
+        mSubscriptions.add(subscribe);
+    }
+
+    public void onPause() {
+        mSubscriptions.unsubscribe();
     }
 }
