@@ -76,43 +76,32 @@ public class MainActivityViewModel {
     }
 
     public void showContents() {
-        User.get().subscribe(user -> {
-            TextContent.find(user, 100).toList().subscribe(textContents -> {
+        User user = User.get().toBlocking().first();
+        if (user == null) {
+            return;
+        }
 
-                //setup RecyclerView
-                MainContentsRecyclerView view = (MainContentsRecyclerView) mMainActivity.findViewById(R.id.list_content);
-                RecyclerView recyclerView = view.toRecyclerView();
-                recyclerView.setAdapter(new RecyclerView.Adapter() {
-                    @Override
-                    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
-                        return new RecyclerView.ViewHolder(view) {
-                        };
-                    }
+        MainContentsRecyclerView view = (MainContentsRecyclerView)mMainActivity.findViewById(R.id.list_content);
+        RecyclerView recyclerView = view.toRecyclerView();
+        TextContent.find(user, 100).toList().subscribe(textContents -> {
+            recyclerView.setAdapter(new RecyclerView.Adapter() {
+                @Override
+                public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                    View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+                    return new RecyclerView.ViewHolder(view){};
+                }
 
-                    @Override
-                    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-                        ((TextView) holder.itemView).setText(textContents.get(position).get());
-                    }
+                @Override
+                public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+                    ((TextView) holder.itemView).setText(textContents.get(position).get());
+                }
 
-                    @Override
-                    public int getItemCount() {
-                        return textContents.size();
-                    }
-                });
-                recyclerView.scrollToPosition(textContents.size() - 1);
+                @Override
+                public int getItemCount() {
+                    return textContents.size();
+                }
             });
-//                    .subscribe(
-//                            next -> Timber.d("next is " + next.get()),
-//                            error -> {
-//                                Timber.d("error!!");
-//                                error.printStackTrace();
-//                            },
-//                            () -> Timber.d("onComplete!")
-//                    );
+            recyclerView.scrollToPosition(textContents.size() - 1);
         });
-//        //FIXME 同期的にテキスト一覧を読み込んでる
-//        List<TextContent> textContents = TextContent.find(User.getForce(), 100).toList().toBlocking().first();
-//
     }
 }
