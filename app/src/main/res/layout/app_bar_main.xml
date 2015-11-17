@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:showIn="@layout/app_bar_main"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".MainActivity">
 
         <io.github.shoma2da.android.self.view.view.MainContentsRecyclerView
@@ -37,26 +37,26 @@
             android:layout_width="match_parent"
             android:layout_height="0dip" />
 
-        <!-- 入力ゾーン -->
-        <LinearLayout
-            android:layout_alignParentBottom="true"
-            android:padding="4dip"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/edittext_content"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:id="@+id/button_send"
-                android:text="送信"
-                android:layout_gravity="bottom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-        </LinearLayout>
     </LinearLayout>
 
+    <!-- 入力ゾーン -->
+    <LinearLayout
+        android:layout_gravity="end|bottom"
+        android:padding="4dip"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/edittext_content"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/button_send"
+            android:text="送信"
+            android:layout_gravity="bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
